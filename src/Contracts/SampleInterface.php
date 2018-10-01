@@ -1,6 +1,6 @@
 <?php
 
-namespace Nextpack\Nextpack\Contracts;
+namespace Retrofico\Retrofico\Contracts;
 
 /**
  * Interface  SampleInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nextpack\Nextpack\Facades;
+namespace Retrofico\Retrofico\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -19,6 +19,6 @@ class SampleFacadeAccessor extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'nextpack.sample';
+        return 'retrofico.sample';
     }
 }

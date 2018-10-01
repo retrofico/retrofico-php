@@ -1,16 +1,15 @@
 <?php
 
-namespace Nextpack\Nextpack\Tests;
+namespace Retrofico\Retrofico\Tests;
 
-use Nextpack\Nextpack\Config;
-use Nextpack\Nextpack\Sample;
+use Retrofico\Retrofico\Config;
+use Retrofico\Retrofico\Sample;
 
 /**
  * Class SampleTest
  *
  * @category Test
- * @package  Nextpack\Nextpack\Tests
- * @author   Mahmoud Zalt <mahmoud@zalt.me>
+ * @package  Retrofico\Retrofico\Tests
  */
 class SampleTest extends TestCase
 {
@@ -20,7 +19,7 @@ class SampleTest extends TestCase
         $config = new Config();
         $sample = new Sample($config);
 
-        $name = 'Mahmoud Zalt';
+        $name = 'retrofico';
 
         $result = $sample->sayHello($name);
 

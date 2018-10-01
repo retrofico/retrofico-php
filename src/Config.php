@@ -1,9 +1,9 @@
 <?php
 
-namespace Nextpack\Nextpack;
+namespace Retrofico\Retrofico;
 
 use Illuminate\Config\Repository;
-use Nextpack\Nextpack\Exceptions\ConfigFileNotFoundException;
+use Retrofico\Retrofico\Exceptions\ConfigFileNotFoundException;
 
 /**
  * Class Config
@@ -16,7 +16,7 @@ class Config
     /**
      * Config file name
      */
-    CONST CONFIG_FILE_NAME = "nextpack";
+    const CONFIG_FILE_NAME = "retrofico";
 
     /**
      * @var  \Illuminate\Config\Repository

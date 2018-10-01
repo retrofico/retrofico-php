@@ -1,21 +1,16 @@
 {
-  "name": "nextpack/nextpack",
-  "description": "Nextpack is a PHP Packages Framework (Starter Project)",
+  "name": "retrofico/retrofico-php",
+  "description": "Lightweight PHP wrapper for retrofico's API.",
   "license": "MIT",
-  "keywords": [
-    "NextPack",
-    "Starter"
-  ],
   "authors": [
     {
-      "name": "Mahmoud Zalt",
-      "email": "mahmoud@zalt.me",
-      "homepage": "http://www.zalt.me",
-      "role": "Coffee Maker :)"
+      "name": "Remy Vanherweghem",
+      "email": "remy@retrofi.co",
+      "role": "Tea Fiend"
     }
   ],
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=7.1.0",
     "illuminate/config": "5.2.*"
   },
   "require-dev": {
@@ -25,13 +20,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Nextpack\\Nextpack\\": "src",
-      "Nextpack\\Library\\": "src/library"
+      "Retrofico\\Retrofico\\": "src",
+      "Retrofico\\Library\\": "src/library"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Nextpack\\Nextpack\\Tests\\": "tests"
+      "Retrofico\\Retrofico\\Tests\\": "tests"
     }
   },
   "scripts": {

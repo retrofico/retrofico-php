@@ -1,18 +1,17 @@
 <?php
 
-namespace Nextpack\Nextpack\ServiceProviders;
+namespace Retrofico\Retrofico\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use Nextpack\Nextpack\Contracts\SampleInterface;
-use Nextpack\Nextpack\Facades\SampleFacadeAccessor;
-use Nextpack\Nextpack\Sample;
+use Retrofico\Retrofico\Contracts\SampleInterface;
+use Retrofico\Retrofico\Facades\SampleFacadeAccessor;
+use Retrofico\Retrofico\Sample;
 
 /**
- * Class NextpackServiceProvider
+ * Class RetroficoServiceProvider
  *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
-class NextpackServiceProvider extends ServiceProvider
+class RetroficoServiceProvider extends ServiceProvider
 {
 
     /**
@@ -31,7 +30,7 @@ class NextpackServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         | Publish the Config file from the Package to the App directory
         |--------------------------------------------------------------------------
-        */
+         */
         $this->configPublisher();
     }
 
@@ -46,21 +45,21 @@ class NextpackServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         | Implementation Bindings
         |--------------------------------------------------------------------------
-        */
+         */
         $this->implementationBindings();
 
         /*
         |--------------------------------------------------------------------------
         | Facade Bindings
         |--------------------------------------------------------------------------
-        */
+         */
         $this->facadeBindings();
 
         /*
         |--------------------------------------------------------------------------
         | Registering Service Providers
         |--------------------------------------------------------------------------
-        */
+         */
         $this->serviceProviders();
     }
 
@@ -82,7 +81,7 @@ class NextpackServiceProvider extends ServiceProvider
     {
         // When users execute Laravel's vendor:publish command, the config file will be copied to the specified location
         $this->publishes([
-            __DIR__ . '/Config/nextpack.php' => config_path('nextpack.php'),
+            __DIR__ . '/Config/retrofico.php' => config_path('retrofico.php'),
         ]);
     }
 
@@ -91,8 +90,8 @@ class NextpackServiceProvider extends ServiceProvider
      */
     private function facadeBindings()
     {
-        // Register 'nextpack.say' instance container
-        $this->app['nextpack.sample'] = $this->app->share(function ($app) {
+        // Register 'retrofico.say' instance container
+        $this->app['retrofico.sample'] = $this->app->share(function ($app) {
             return $app->make(Sample::class);
         });
 

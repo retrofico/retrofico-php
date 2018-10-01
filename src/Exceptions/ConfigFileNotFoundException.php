@@ -1,5 +1,5 @@
 <?php
-namespace Nextpack\Nextpack\Exceptions;
+namespace Retrofico\Retrofico\Exceptions;
 
 /**
  * Class ConfigFileNotFoundException

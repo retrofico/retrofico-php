@@ -1,6 +1,6 @@
 <?php
 
-namespace Nextpack\Nextpack;
+namespace Retrofico\Retrofico;
 
 /**
  * Class Sample
@@ -11,14 +11,14 @@ class Sample
 {
 
     /**
-     * @var  \Nextpack\Nextpack\Config
+     * @var  \Retrofico\Retrofico\Config
      */
     private $config;
 
     /**
      * Sample constructor.
      *
-     * @param \Nextpack\Nextpack\Config $config
+     * @param \Retrofico\Retrofico\Config $config
      */
     public function __construct(Config $config)
     {

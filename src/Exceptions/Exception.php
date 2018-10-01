@@ -1,6 +1,6 @@
 <?php
 
-namespace Nextpack\Nextpack\Exceptions;
+namespace Retrofico\Retrofico\Exceptions;
 
 use Exception as CoreException;
 
