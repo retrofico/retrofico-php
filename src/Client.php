@@ -10,7 +10,8 @@ namespace Retrofico\Retrofico;
  */
 class Client
 {
-    private $config;
+    protected $config;
+
     /**
      * Sample constructor.
      *
@@ -19,17 +20,6 @@ class Client
     public function __construct(Config $config)
     {
         $this->config = $config;
-    }
-
-    /**
-     * @param $name
-     *
-     * @return  string
-     */
-    public function sayHello($name)
-    {
-        $greeting = $this->config->get('greeting');
-        return $greeting . ' ' . $name;
     }
 
 }
