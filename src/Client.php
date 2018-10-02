@@ -29,7 +29,6 @@ class Client
     public function sayHello($name)
     {
         $greeting = $this->config->get('greeting');
-        var_dump($this->config->get("team_id"));
         return $greeting . ' ' . $name;
     }
 
