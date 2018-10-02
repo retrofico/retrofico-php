@@ -5,11 +5,10 @@ namespace Retrofico\Retrofico\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class SampleFacadeAccessor
+ * Class ClientFacadeAccessor
  *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
-class SampleFacadeAccessor extends Facade
+class ClientFacadeAccessor extends Facade
 {
 
     /**
@@ -19,6 +18,6 @@ class SampleFacadeAccessor extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'retrofico.sample';
+        return 'retrofico.client';
     }
 }

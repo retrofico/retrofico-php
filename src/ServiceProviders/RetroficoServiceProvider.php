@@ -3,9 +3,9 @@
 namespace Retrofico\Retrofico\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use Retrofico\Retrofico\Contracts\SampleInterface;
-use Retrofico\Retrofico\Facades\SampleFacadeAccessor;
-use Retrofico\Retrofico\Sample;
+use Retrofico\Retrofico\Client;
+use Retrofico\Retrofico\Contracts\ClientInterface;
+use Retrofico\Retrofico\Facades\ClientFacadeAccessor;
 
 /**
  * Class RetroficoServiceProvider
@@ -69,8 +69,8 @@ class RetroficoServiceProvider extends ServiceProvider
     private function implementationBindings()
     {
         $this->app->bind(
-            SampleInterface::class,
-            Sample::class
+            ClientInterface::class,
+            Client::class
         );
     }
 
@@ -91,14 +91,14 @@ class RetroficoServiceProvider extends ServiceProvider
     private function facadeBindings()
     {
         // Register 'retrofico.say' instance container
-        $this->app['retrofico.sample'] = $this->app->share(function ($app) {
-            return $app->make(Sample::class);
+        $this->app['retrofico.client'] = $this->app->share(function ($app) {
+            return $app->make(Client::class);
         });
 
-        // Register 'Sample' Alias, So users don't have to add the Alias to the 'app/config/app.php'
+        // Register 'RetroficoClient' Alias, So users don't have to add the Alias to the 'app/config/app.php'
         $this->app->booting(function () {
             $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-            $loader->alias('Sample', SampleFacadeAccessor::class);
+            $loader->alias('RetroficoClient', ClientFacadeAccessor::class);
         });
     }
 

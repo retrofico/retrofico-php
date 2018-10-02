@@ -3,22 +3,18 @@
 namespace Retrofico\Retrofico;
 
 /**
- * Class Sample
+ * Minimalist retrofi.co API wrapper
+ * This wrapper: https://github.com/retrofico/retrofico-php
  *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
+ * @author  Remy Vanherweghem <remy@retrofi.co>
  */
-class Sample
+class Client
 {
-
-    /**
-     * @var  \Retrofico\Retrofico\Config
-     */
     private $config;
-
     /**
      * Sample constructor.
      *
-     * @param \Retrofico\Retrofico\Config $config
+     * @param \Nextpack\Nextpack\Config $config
      */
     public function __construct(Config $config)
     {
@@ -33,7 +29,7 @@ class Sample
     public function sayHello($name)
     {
         $greeting = $this->config->get('greeting');
-
+        var_dump($this->config->get("team_id"));
         return $greeting . ' ' . $name;
     }
 

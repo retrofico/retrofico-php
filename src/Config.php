@@ -7,8 +7,6 @@ use Retrofico\Retrofico\Exceptions\ConfigFileNotFoundException;
 
 /**
  * Class Config
- *
- * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
 class Config
 {
@@ -24,11 +22,13 @@ class Config
     private $config;
 
     /**
-     * Config constructor.
+     * Config constructor. If not using environement variables or to override
+     * them, a `team_id` and an `api_key` can be manually passed.
      *
-     * @param \Illuminate\Config\Repository $config
+     * @param string|null $team_id
+     * @param string|null $api_key
      */
-    public function __construct()
+    public function __construct(?string $team_id = null, ?string $api_key = null)
     {
         $configPath = $this->configurationPath();
 
@@ -39,6 +39,15 @@ class Config
         }
 
         $this->config = new Repository(require $config_file);
+
+        if ($team_id) {
+            $this->config->set("team_id", $team_id);
+        }
+
+        if ($api_key) {
+            $this->config->set("api_key", $api_key);
+        }
+
     }
 
     /**

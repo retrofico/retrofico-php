@@ -2,8 +2,8 @@
 
 namespace Retrofico\Retrofico\Tests;
 
+use Retrofico\Retrofico\Client;
 use Retrofico\Retrofico\Config;
-use Retrofico\Retrofico\Sample;
 
 /**
  * Class SampleTest
@@ -17,7 +17,7 @@ class SampleTest extends TestCase
     public function testSayHello()
     {
         $config = new Config();
-        $sample = new Sample($config);
+        $sample = new Client($config);
 
         $name = 'retrofico';
 
