@@ -14,7 +14,12 @@ class Config
     /**
      * Config file name
      */
-    const CONFIG_FILE_NAME = "retrofico";
+    protected const CONFIG_FILE_NAME = "retrofico";
+
+    /**
+     * Base API path
+     */
+    public const API_BASE_PATH = "https://retrofi.co/api/";
 
     /**
      * @var  \Illuminate\Config\Repository
@@ -78,4 +83,5 @@ class Config
     {
         return $this->config->get($key);
     }
+
 }

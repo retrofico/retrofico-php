@@ -16,16 +16,16 @@ class SampleTest extends TestCase
 
     public function testSayHello()
     {
-        $config = new Config();
-        $sample = new Client($config);
+        $config = new Config("lorem", "ipsum");
+        $client = new Client($config);
 
         $name = 'retrofico';
 
-        $result = $sample->sayHello($name);
+        $result = $client->get("hello");
 
-        $expected = $config->get('greeting') . ' ' . $name;
+        /*$expected = $config->get('greeting') . ' ' . $name;
 
-        $this->assertEquals($result, $expected);
+    $this->assertEquals($result, $expected);*/
 
     }
 
