@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=7.1.0",
-    "illuminate/config": "^5.7",
+    "illuminate/config": ">5.2",
     "guzzlehttp/guzzle": "^6.0",
     "league/uri": "^5.3"
   },
