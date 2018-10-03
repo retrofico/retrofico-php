@@ -3,7 +3,6 @@
 namespace Retrofico\Retrofico;
 
 use Illuminate\Config\Repository;
-use Retrofico\Retrofico\Exceptions\ConfigFileNotFoundException;
 
 /**
  * Class Config
@@ -35,14 +34,8 @@ class Config
      */
     public function __construct(?string $team_id = null, ?string $api_key = null)
     {
-        $configPath = $this->configurationPath();
 
-        $config_file = $configPath . '/' . self::CONFIG_FILE_NAME . '.php';
-
-        if (!file_exists($config_file)) {
-            throw new ConfigFileNotFoundException();
-        }
-
+        $config_file = $this->configurationFile();
         $this->config = new Repository(require $config_file);
 
         if ($team_id) {
@@ -60,18 +53,26 @@ class Config
      *
      * @return  mixed|string
      */
-    private function configurationPath()
+    private function configurationFile(): string
     {
         // the config file of the package directory
         $config_path = __DIR__ . '/Config';
 
+        $filename = '/' . self::CONFIG_FILE_NAME . '.php';
+
         // check if this laravel specific function `config_path()` exist (means this package is used inside
         // a laravel framework). If so then load then try to load the laravel config file if it exist.
-        if (function_exists('config_path')) {
+        if (function_exists('config_path') && file_exists(config_path() . $filename)) {
             $config_path = config_path();
         }
 
-        return $config_path;
+        $config_file = $config_path . $filename;
+
+        if (!file_exists($config_file)) {
+            throw new ConfigFileNotFoundException();
+        }
+
+        return $config_file;
     }
 
     /**
