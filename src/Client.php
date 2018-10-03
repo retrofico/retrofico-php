@@ -96,18 +96,17 @@ class Client
      *
      * @return array
      */
-    protected function rawCall(string $method, string $path, $body = null)
+    protected function rawCall(string $method, string $path, $body = null, ?array $headers = [])
     {
         if (!$this->config->get("team_id") || !$this->config->get("api_key")) {
             throw new MissingTeamIdOrApiKeyException("Missing `team_id` and/or an `api_key`.");
         }
 
         $url = $this->generateUrlForPath($path);
-        var_dump($url);
-        exit();
+
         $request = new Request($method, $url);
 
-        if ($content && $method == 'GET') {
+        if ($body && $method == 'GET') {
 
             $builder = new QueryBuilder();
             $signatureQuery = $builder->build(["api_token" => $this->config->get("api_key")], '&');
@@ -116,15 +115,14 @@ class Client
 
             $request = $request->withUri($url);
             $body = "";
-        } elseif (isset($content)) {
-            $body = json_encode($content, JSON_UNESCAPED_SLASHES);
+        } elseif (isset($body)) {
+            /** That's probably not right... */
+            $body = json_encode($body, JSON_UNESCAPED_SLASHES);
             $request->getBody()->write($body);
         } else {
             $body = "";
         }
-        if (!is_array($headers)) {
-            $headers = [];
-        }
+
         $headers['Content-Type'] = 'application/json; charset=utf-8';
 
         /** @var Response $response */

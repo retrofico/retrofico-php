@@ -21,7 +21,8 @@ class SampleTest extends TestCase
 
         $name = 'retrofico';
 
-        $result = $client->get("hello");
+        $result = $client->get("surveys");
+        var_dump($result);
 
         /*$expected = $config->get('greeting') . ' ' . $name;
 
