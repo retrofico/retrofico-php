@@ -8,6 +8,8 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use League\Uri\Http;
 use League\Uri\Modifiers\AppendSegment;
+use League\Uri\Modifiers\MergeQuery;
+use League\Uri\QueryBuilder;
 
 /**
  * Minimalist retrofi.co API wrapper
@@ -61,6 +63,12 @@ class Client
             $url = $teamedBasePathModifier->process($url);
         }
 
+        // Sign the url with the API key
+        $builder = new QueryBuilder();
+        $signatureQuery = $builder->build(["api_token" => $this->config->get("api_key")], '&');
+        $modifier = new MergeQuery($signatureQuery);
+        $url = $modifier->process($url);
+
         return $url;
     }
 
@@ -70,10 +78,11 @@ class Client
      * @param string $path
      * @return Http
      */
-    protected function generateRawUrl(string $path): Http
+    protected function generateUrlForPath(string $path): Http
     {
         $baseEndpoint = $this->getBaseEndpoint();
         $baseEndpointModifier = new AppendSegment($path);
+
         return $baseEndpointModifier->process($baseEndpoint);
     }
 
@@ -93,13 +102,33 @@ class Client
             throw new MissingTeamIdOrApiKeyException("Missing `team_id` and/or an `api_key`.");
         }
 
-        $url = $this->generateRawUrl($path);
+        $url = $this->generateUrlForPath($path);
         var_dump($url);
-
+        exit();
         $request = new Request($method, $url);
 
-        exit();
+        if ($content && $method == 'GET') {
 
+            $builder = new QueryBuilder();
+            $signatureQuery = $builder->build(["api_token" => $this->config->get("api_key")], '&');
+            $modifier = new MergeQuery($signatureQuery);
+            $url = $modifier->process($url);
+
+            $request = $request->withUri($url);
+            $body = "";
+        } elseif (isset($content)) {
+            $body = json_encode($content, JSON_UNESCAPED_SLASHES);
+            $request->getBody()->write($body);
+        } else {
+            $body = "";
+        }
+        if (!is_array($headers)) {
+            $headers = [];
+        }
+        $headers['Content-Type'] = 'application/json; charset=utf-8';
+
+        /** @var Response $response */
+        return $this->http_client->send($request, ['headers' => $headers]);
     }
     /**
      * Decode a Response object body to an Array
