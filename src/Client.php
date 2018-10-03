@@ -31,8 +31,12 @@ class Client
      *
      * @param \Nextpack\Nextpack\Config $config
      */
-    public function __construct(Config $config)
+    public function __construct(?Config $config = null)
     {
+        if (!$config) {
+            $config = new Config();
+        }
+
         $this->config = $config;
 
         $this->http_client = new GuzzleClient([
