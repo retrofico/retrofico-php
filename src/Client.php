@@ -113,7 +113,7 @@ class Client
         if ($body && $method == 'GET') {
 
             $builder = new QueryBuilder();
-            $signatureQuery = $builder->build(["api_token" => $this->config->get("api_key")], '&');
+            $signatureQuery = $builder->build(array_merge(["api_token" => $this->config->get("api_key")], $body), '&');
             $modifier = new MergeQuery($signatureQuery);
             $url = $modifier->process($url);
 
